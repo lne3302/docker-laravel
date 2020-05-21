@@ -20,8 +20,9 @@ ENV TZ=UTC \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && \
-  apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales && \
+  apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales vim&& \
   apt-get clean && \
+  pecl install xdebug && \
   rm -rf /var/lib/apt/lists/* && \
   locale-gen en_US.UTF-8 && \
   localedef -f UTF-8 -i en_US en_US.UTF-8 && \
